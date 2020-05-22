@@ -1,0 +1,18 @@
+.profile__info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "a b"
+    "c d";
+}
+
+
+@media screen and (max-width: 480px){
+  .profile__info {
+    gap: 12px;
+    grid-template-areas:
+    "a b"
+    "c c";
+    justify-items: center;
+  }
+ }

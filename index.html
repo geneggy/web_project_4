@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Around the US</title>
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+
+  <body class="page">
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__exit"></button>
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form">
+          <input
+            type="text"
+            class="popup__form-name popup__form-field"
+            value="Jacques Cousteau"
+            placeholder="name"
+          />
+          <input
+            type="text"
+            class="popup__form-about popup__form-field"
+            value="Explorer"
+            placeholder="about"
+          />
+          <button class="popup__save-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="page__content">
+      <!-- Header -->
+      <header class="header">
+        <img src="./images/logo.svg" class="logo" alt="logo" />
+      </header>
+
+      <main>
+        <!-- profile section -->
+        <section class="profile">
+          <img src="images/Avatar.png" class="profile__avatar" alt="avatar" />
+
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button class="profile__edit-button"></button>
+            <p class="profile__subtitle">Explorer</p>
+          </div>
+
+          <button class="profile__add-button"></button>
+        </section>
+
+        <!-- photos section -->
+        <section class="places">
+          <div class="place">
+            <img class="place__image" src="images/yosemite-valley.jpg" />
+            <div class="place__text-container">
+              <h2 class="place__title">Yosemite Valley</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+
+          <div class="place">
+            <img class="place__image" src="images/lake-louise.png" />
+            <div class="place__text-container">
+              <h2 class="place__title">Lake Louise</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+
+          <div class="place">
+            <img class="place__image" src="images/bald-mountains.png" />
+            <div class="place__text-container">
+              <h2 class="place__title">Bald Mountains</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+
+          <div class="place">
+            <img class="place__image" src="images/latemar.png" />
+            <div class="place__text-container">
+              <h2 class="place__title">Latemar</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+
+          <div class="place">
+            <img class="place__image" src="images/vanois-national-park.png" />
+            <div class="place__text-container">
+              <h2 class="place__title">Vanois National...</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+
+          <div class="place">
+            <img class="place__image" src="images/lago-di-braies.png" />
+            <div class="place__text-container">
+              <h2 class="place__title">Lago di Braies</h2>
+              <button class="place__like-button"></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- footer section -->
+        <footer class="footer">
+          <p class="footer__copyright">© 2020 Around The U.S.</p>
+        </footer>
+      </main>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

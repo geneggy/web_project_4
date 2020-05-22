@@ -1,0 +1,12 @@
+@import url("./__image/place__image.css");
+@import url("./__text-container/place__text-container.css");
+@import url("./__title/place__title.css");
+@import url("./__like-button/place__like-button.css");
+
+.place {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+}
