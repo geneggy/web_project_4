@@ -6,13 +6,12 @@
     "c d";
 }
 
-
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .profile__info {
     gap: 12px;
     grid-template-areas:
-    "a b"
-    "c c";
+      "a b"
+      "c c";
     justify-items: center;
   }
- }
+}

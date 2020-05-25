@@ -11,7 +11,7 @@
   border: none;
   margin: 0;
   padding: 0;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
 
 .popup__exit:hover {

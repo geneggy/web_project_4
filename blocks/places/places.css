@@ -6,11 +6,10 @@
   gap: 20px 18px;
 }
 
-
-@media screen and (max-width: 480px){
-  .places{
-  margin-top: 36px;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
+@media screen and (max-width: 480px) {
+  .places {
+    margin-top: 36px;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
   }
 }

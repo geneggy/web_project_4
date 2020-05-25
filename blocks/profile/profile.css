@@ -11,14 +11,12 @@
   grid-template-columns: auto 1fr auto;
   color: white;
   gap: 30px;
-
 }
 
-
-@media screen and (max-width: 480px){
- .profile {
-   grid-template-columns: 1fr;
-   gap: 14px;
-   justify-items: center;
- }
+@media screen and (max-width: 480px) {
+  .profile {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    justify-items: center;
+  }
 }

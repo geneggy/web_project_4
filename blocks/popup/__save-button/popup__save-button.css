@@ -8,9 +8,8 @@
   line-height: 22px;
   text-align: center;
   color: #ffffff;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
-
 
 .popup__save-button:hover {
   opacity: 0.6;
