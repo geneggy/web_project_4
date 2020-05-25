@@ -20,7 +20,7 @@
   height: 100%;
   width: 100%;
   background: black;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .popup_open {
