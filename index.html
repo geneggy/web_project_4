@@ -32,53 +32,6 @@
 
         <!-- photos section -->
         <section class="places">
-          <div class="place">
-            <img class="place__image" src="images/yosemite-valley.jpg" />
-            <div class="place__text-container">
-              <h2 class="place__title">Yosemite Valley</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
-
-          <div class="place">
-            <img class="place__image" src="images/lake-louise.png" />
-            <div class="place__text-container">
-              <h2 class="place__title">Lake Louise</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
-
-          <div class="place">
-            <img class="place__image" src="images/bald-mountains.png" />
-            <div class="place__text-container">
-              <h2 class="place__title">Bald Mountains</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
-
-          <div class="place">
-            <img class="place__image" src="images/latemar.png" />
-            <div class="place__text-container">
-              <h2 class="place__title">Latemar</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
-
-          <div class="place">
-            <img class="place__image" src="images/vanois-national-park.png" />
-            <div class="place__text-container">
-              <h2 class="place__title">Vanois National Park</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
-
-          <div class="place">
-            <img class="place__image" src="images/lago-di-braies.png" />
-            <div class="place__text-container">
-              <h2 class="place__title">Lago di Braies</h2>
-              <button class="place__like-button"></button>
-            </div>
-          </div>
         </section>
 
         <!-- footer section -->
@@ -88,11 +41,11 @@
       </main>
     </div>
 
-    <div class="popup">
+    <div class="popup popup_edit">
       <div class="popup__container">
-        <button class="popup__exit"></button>
+        <button class="popup__exit popup__exit_edit"></button>
         <h2 class="popup__title">Edit Profile</h2>
-        <form class="popup__form">
+        <form class="popup__form popup__form_edit">
           <input
             type="text"
             class="popup__form-name popup__form-field"
@@ -110,6 +63,40 @@
       </div>
     </div>
 
+  <!-- add image popup -->
+    <div class="popup popup_new-place">
+      <div class="popup__container">
+        <button class="popup__exit popup__exit_new-place"></button>
+        <h2 class="popup__title">New Place</h2>
+        <form class="popup__form popup__form_add">
+          <input
+            type="text"
+            class="popup__form-title popup__form-field"
+            placeholder="Title"
+            value=""
+          />
+          <input
+            type="url"
+            class="popup__form-link popup__form-field"
+            placeholder="Image link"
+            value=""
+          />
+          <button class="popup__save-button" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <template id="placeTemplate">
+      <div class="place">
+        <button class="place__trash-button"></button>
+        <img class="place__image" src="" alt="" />
+        <div class="place__text-container">
+          <h2 class="place__title"></h2>
+          <button class="place__like-button"></button>
+        </div>
+      </div>
+    </template>
+    
     <script src="./script.js"></script>
   </body>
 </html>
