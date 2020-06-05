@@ -1,7 +1,7 @@
 .logo {
   width: 173px;
   height: 33px;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
 }
 
 .logo:hover {

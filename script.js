@@ -24,10 +24,6 @@ const popupImage = document.querySelector('.popup__image');
 const popupSubtext = document.querySelector('.popup__subtext');
 const popupImgModal = document.querySelector('.popup_img');
 
-console.log(popupSubtext);
-console.log(popupImage);
-console.log(popupImgModal);
-
 //template for new places and container for places
 const placeTemplate = document.querySelector('#placeTemplate').content;
 const placesContainer = document.querySelector('.places');
@@ -61,23 +57,13 @@ const initialPlaces = [
 ];
 
 
-//Edit profile functions
-function formSubmitHandler(e) {
-  e.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = aboutInput.value;
-  popupEdit.classList.toggle('popup_open');
+//popup toggle
+function togglePopup(popup) {
+  popup.classList.toggle('popup_open');
 }
 
-//add new image functions
-function submitAddForm(e) {
-  e.preventDefault();
-  createPlace({name: titleInput.value, link: linkInput.value});
-  addForm.reset();
-  togglePlacePopup();
-}
 
-//create a place and render it in page
+//create a place
 function createPlace(place) {
   const placeElement = placeTemplate.cloneNode(true);
   const placeImage = placeElement.querySelector('.place__image');
@@ -92,52 +78,58 @@ function createPlace(place) {
 
   //event listeners
   //toggle heart fill in on click
-  placeLike.addEventListener('click', function (e) {
+  placeLike.addEventListener('click', (e) => {
     e.target.classList.toggle('place__like-button_liked');
   });
 
   //delete place when trash button clicked
-  placeTrash.addEventListener('click', function (e) {
+  placeTrash.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   });
 
-
   //image modal
-  placeImage.addEventListener('click', function () {
+  placeImage.addEventListener('click', () => {
     popupImage.src = place.link;
+    popupImage.alt = place.name;
     popupSubtext.textContent = place.name;
-    popupImgModal.classList.toggle('popup_open');
+    togglePopup(popupImgModal);
   });
 
-  //add new element to container
-  placesContainer.append(placeElement);
+  return placeElement;
 }
 
-//popup toggle functions
-function toggleEditPopup() {
-  popupEdit.classList.toggle('popup_open');
+//render place on dom
+function renderPlace(place) {
+  placesContainer.prepend(createPlace(place));
 }
 
-function togglePlacePopup() {
-  popupPlace.classList.toggle('popup_open');
+//add new image functions
+function submitAddForm(e) {
+  e.preventDefault();
+  renderPlace({name: titleInput.value, link: linkInput.value});
+  addForm.reset();
+  togglePopup(popupPlace);
 }
 
-function toggleImgPopup() {
-  popupImgModal.classList.toggle('popup_open');
+//Edit profile functions
+function formSubmitHandler(e) {
+  e.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileSubtitle.textContent = aboutInput.value;
+  togglePopup(popupEdit);
 }
-
 
 //render all initial places on load
-initialPlaces.forEach(function(place) {
-  createPlace(place);
+initialPlaces.forEach((place) => {
+  renderPlace(place);
 });
 
 //event listeners
-editPopupButton.addEventListener('click', toggleEditPopup);
-addPopupButton.addEventListener('click', togglePlacePopup);
-closeEditPopupButton.addEventListener('click', toggleEditPopup);
-closeAddPopupButton.addEventListener('click', togglePlacePopup);
-closeImgPopupButton.addEventListener('click', toggleImgPopup);
+editPopupButton.addEventListener('click', () => togglePopup(popupEdit));
+addPopupButton.addEventListener('click', () => togglePopup(popupPlace));
+closeEditPopupButton.addEventListener('click', () => togglePopup(popupEdit));
+closeAddPopupButton.addEventListener('click', () => togglePopup(popupPlace));
+closeImgPopupButton.addEventListener('click', () => togglePopup(popupImgModal));
 addForm.addEventListener('submit', submitAddForm);
 editForm.addEventListener('submit', formSubmitHandler);
 

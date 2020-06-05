@@ -1,6 +1,4 @@
 .popup__img-container {
-  margin: auto;
-  width: 80%;
   max-width: 700px;
   position: relative;
   margin: 90px auto;
@@ -11,7 +9,6 @@
 
 @media screen and (max-width: 480px) {
   .popup__img-container {
-    width: 100%;
     margin: 136px 40px;
   }
 }

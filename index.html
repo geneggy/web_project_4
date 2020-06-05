@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Around the US</title>
-    <meta name="description" content="" />
+    <meta name="description" content="Pictures of various places around the US" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
@@ -23,11 +23,11 @@
 
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" aria-label="open profile edit window"></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
 
-          <button class="profile__add-button"></button>
+          <button class="profile__add-button" aria-label="open add new image button"></button>
         </section>
 
         <!-- photos section -->
@@ -44,7 +44,7 @@
     <!-- edit profile popup -->
     <div class="popup popup_edit">
       <div class="popup__container">
-        <button class="popup__exit popup__exit_edit"></button>
+        <button class="popup__exit popup__exit_edit" aria-label="close"></button>
         <h2 class="popup__title">Edit Profile</h2>
         <form class="popup__form popup__form_edit">
           <input
@@ -52,14 +52,16 @@
             class="popup__form-name popup__form-field"
             value="Jacques Cousteau"
             placeholder="name"
+            required
           />
           <input
             type="text"
             class="popup__form-about popup__form-field"
             value="Explorer"
             placeholder="about"
+            required
           />
-          <button class="popup__save-button" type="submit">Save</button>
+          <button class="popup__save-button" aria-label="save" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -67,7 +69,7 @@
   <!-- add image popup -->
     <div class="popup popup_new-place">
       <div class="popup__container">
-        <button class="popup__exit popup__exit_new-place"></button>
+        <button class="popup__exit popup__exit_new-place" aria-label="close"></button>
         <h2 class="popup__title">New Place</h2>
         <form class="popup__form popup__form_add">
           <input
@@ -75,14 +77,16 @@
             class="popup__form-title popup__form-field"
             placeholder="Title"
             value=""
+            required
           />
           <input
             type="url"
             class="popup__form-link popup__form-field"
             placeholder="Image link"
             value=""
+            required
           />
-          <button class="popup__save-button" type="submit">Create</button>
+          <button class="popup__save-button" aria-label="save" type="submit">Create</button>
         </form>
       </div>
     </div>
@@ -90,19 +94,19 @@
     <!-- image modal popup -->
     <div class="popup popup_img">
       <div class="popup__img-container">
-        <button class="popup__exit popup__exit_img"></button>
-        <img src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="" class="popup__image">
-        <p class="popup__subtext">Yosemite</p>
+        <button class="popup__exit popup__exit_img" aria-label="close"></button>
+        <img src="" alt="" class="popup__image">
+        <p class="popup__subtext"></p>
       </div>
     </div>
 
     <template id="placeTemplate">
       <div class="place">
-        <button class="place__trash-button"></button>
+        <button class="place__trash-button" aria-label="delete place"></button>
         <img class="place__image" src="" alt="" />
         <div class="place__text-container">
           <h2 class="place__title"></h2>
-          <button class="place__like-button"></button>
+          <button class="place__like-button" aria-label="like place"></button>
         </div>
       </div>
     </template>

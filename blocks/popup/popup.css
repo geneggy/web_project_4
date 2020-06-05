@@ -7,7 +7,6 @@
 @import url("./__img-container/popup__img-container.css");
 @import url("./__image/popup__image.css");
 @import url("./__subtext/popup__subtext.css");
-@import url("./_img/popup_img.css");
 
 
 .popup {
@@ -18,12 +17,14 @@
   height: 100%;
   top: 0;
   left: 0;
-  transition: all .6s;
+  transition: all .3s;
 }
 
 .popup::before {
   content: "";
   position: absolute;
+  top:0;
+  left: 0;
   height: 100%;
   width: 100%;
   background: black;
