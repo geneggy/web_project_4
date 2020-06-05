@@ -7,6 +7,10 @@
   top: 19px;
   right: 15px;
   border: none;
+  transition: opacity 0.5s;
   }
 
 
+  .place__trash-button:hover {
+    opacity: 0.6;
+  }

@@ -1,11 +1,7 @@
 .popup__subtext {
-margin: 0;
+margin: 10px 0 0 0;
 padding: 0;
-font-family: Inter;
-font-style: normal;
-font-weight: normal;
 font-size: 12px;
 line-height: 15px;
 color: #FFFFFF;
-
 }
