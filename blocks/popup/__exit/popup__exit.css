@@ -4,9 +4,9 @@
   height: 41px;
   right: -41px;
   top: -41px;
-  background-image: url("../../../images/close-icon.png");
+  background: url("../../../images/close-icon.png");
   background-repeat: no-repeat;
-  background-color: black;
+
   background-position: center;
   border: none;
   margin: 0;
@@ -20,7 +20,9 @@
 
 @media screen and (max-width: 480px) {
   .popup__exit {
-    right: 0;
-    top: 0;
+    width: 30px;
+    height: 30px;
+    right: -30px;
+    top: -30px;
   }
 }

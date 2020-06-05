@@ -4,6 +4,11 @@
 @import url("./__form/popup__form.css");
 @import url("./__form-field/popup__form-field.css");
 @import url("./__save-button/popup__save-button.css");
+@import url("./__img-container/popup__img-container.css");
+@import url("./__image/popup__image.css");
+@import url("./__subtext/popup__subtext.css");
+@import url("./_img/popup_img.css");
+
 
 .popup {
   position: fixed;
