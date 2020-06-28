@@ -65,11 +65,10 @@ const enableValidation = ({
 
   // for each form element, add submit event listener which will prevent default
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
+    formElement.addEventListener('submit', (e) => {
+      e.preventDefault();
     });
 
-    // create array of inputs for each formElement
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
