@@ -122,7 +122,7 @@ initialPlaces.forEach((place) => {
   renderPlace(place);
 });
 
-//click out of popup
+//click out of popup listeners
 popupEdit.addEventListener('click', (e) =>
   e.target.classList.contains('popup_edit') ? togglePopup(popupEdit) : ''
 );
@@ -133,14 +133,24 @@ popupImgModal.addEventListener('click', (e) =>
   e.target.classList.contains('popup_img') ? togglePopup(popupImgModal) : ''
 );
 
-//submit popup toggle
+//escape out of modal listeners
+window.addEventListener('keyup', function (e) {
+  if (e.key === 'Escape') {
+    popupEdit.classList.remove('popup_open');
+    popupPlace.classList.remove('popup_open');
+    popupImgModal.classList.remove('popup_open');
+  }
+});
+
+//submit popup listeners
 editPopupButton.addEventListener('click', () => togglePopup(popupEdit));
 addPopupButton.addEventListener('click', () => togglePopup(popupPlace));
 
-//close popup toggle
+//close popup listeners
 closeEditPopupButton.addEventListener('click', () => togglePopup(popupEdit));
 closeAddPopupButton.addEventListener('click', () => togglePopup(popupPlace));
 closeImgPopupButton.addEventListener('click', () => togglePopup(popupImgModal));
 
+//submitlisteners
 addForm.addEventListener('submit', submitAddForm);
 editForm.addEventListener('submit', formSubmitHandler);

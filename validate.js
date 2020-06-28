@@ -73,7 +73,7 @@ const enableValidation = ({
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
-    // check button state on load
+    // button state on load
     toggleButtonState(inputList, buttonElement, rest);
 
     //for each input, set eventlisteners for that input
