@@ -46,22 +46,34 @@
       <div class="popup__container">
         <button class="popup__exit popup__exit_edit" aria-label="close"></button>
         <h2 class="popup__title">Edit Profile</h2>
-        <form class="popup__form popup__form_edit">
+
+<!--            EDIT PROFILE FORM                -->
+        <form class="popup__form popup__form_edit" novalidate>
           <input
             type="text"
-            class="popup__form-name popup__form-field"
+            class="popup__form-name popup__form-field popup__input"
+            id="name-input"
             value="Jacques Cousteau"
             placeholder="name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="popup__error" id="name-input-error">Test</span>
+
           <input
             type="text"
-            class="popup__form-about popup__form-field"
+            class="popup__form-about popup__form-field popup__input"
+            id="about-input"
             value="Explorer"
             placeholder="about"
             required
+            minlength="2"
+            maxlength="200"
           />
-          <button class="popup__save-button" aria-label="save" type="submit">Save</button>
+          <span class="popup__error" id="about-input-error">Test</span>
+
+          <button class="popup__button" aria-label="save" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -71,22 +83,32 @@
       <div class="popup__container">
         <button class="popup__exit popup__exit_new-place" aria-label="close"></button>
         <h2 class="popup__title">New Place</h2>
-        <form class="popup__form popup__form_add">
+
+  <!--         IMAGE FORM        -->
+        <form class="popup__form popup__form_add" novalidate>
           <input
             type="text"
-            class="popup__form-title popup__form-field"
+            class="popup__form-title popup__form-field popup__input"
+            id="title-input"
             placeholder="Title"
             value=""
             required
+            minlength="1"
+            maxlength="30"
           />
+          <span class="popup__error" id="title-input-error">Test</span>
+
           <input
             type="url"
-            class="popup__form-link popup__form-field"
+            class="popup__form-link popup__form-field popup__input"
+            id="link-input"
             placeholder="Image link"
             value=""
             required
           />
-          <button class="popup__save-button" aria-label="save" type="submit">Create</button>
+          <span class="popup__error" id="link-input-error">Test</span>
+
+          <button class="popup__button" aria-label="save" type="submit">Create</button>
         </form>
       </div>
     </div>
@@ -112,5 +134,6 @@
     </template>
     
     <script src="./script.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>
