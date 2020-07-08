@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 //interaction buttons
 const editPopupButton = document.querySelector('.profile__edit-button');
 const closeEditPopupButton = document.querySelector('.popup__exit_edit');
@@ -133,14 +134,16 @@ popupImgModal.addEventListener('click', (e) =>
   e.target.classList.contains('popup_img') ? togglePopup(popupImgModal) : ''
 );
 
-//escape out of modal listeners
-window.addEventListener('keyup', function (e) {
+// Escape key function to allow removal of handler 
+function escape(e) {
   if (e.key === 'Escape') {
-    popupEdit.classList.remove('popup_open');
-    popupPlace.classList.remove('popup_open');
-    popupImgModal.classList.remove('popup_open');
+    togglePopup(document.querySelector('.popup_open'));
   }
-});
+  e.target.removeEventListener('keyup', escape);
+}
+
+window.addEventListener('keyup', escape);
+
 
 //submit popup listeners
 editPopupButton.addEventListener('click', () => togglePopup(popupEdit));
