@@ -44,6 +44,7 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
+    console.log('button works!');
     const buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
@@ -64,8 +65,9 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
+        this._toggleButtonState();
       });
-      this._toggleButtonState();
+      
     });
   }
 }
