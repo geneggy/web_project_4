@@ -1,4 +1,4 @@
-import { togglePopup } from './script.js';
+import {togglePopup} from './utils.js';
 
 export default class Card {
   constructor(data, template) {
@@ -16,8 +16,9 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._element.querySelector('.place__image').src = this._link;
-    this._element.querySelector('.place__image').alt = this._link;
+    const placeImage = this._element.querySelector('.place__image');
+    placeImage.src = this._link;
+    placeImage.alt = this._link;
     this._element.querySelector('.place__title').textContent = this._name;
     return this._element;
   }

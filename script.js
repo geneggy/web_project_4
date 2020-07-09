@@ -1,4 +1,4 @@
-
+import {togglePopup} from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -66,10 +66,7 @@ initialPlaces.forEach((place) => {
   placesContainer.prepend(newPlace.generateCard());
 });
 
-//popup toggle
-export function togglePopup(popup) {
-  popup.classList.toggle('popup_open');
-}
+
 
 //add new image functions
 function submitAddForm(e) {
