@@ -1,10 +1,11 @@
-# Project 4: Around The U.S.
+# Project 4-7: Around The U.S.
 
 ### Overview
-* Around the US is currently a project used to demonstrate knoowledge of HTML/CSS and javascript Event Binders through a photo gallery profile.
+* Around the US is currently a project used to demonstrate knoowledge of HTML/CSS and javascript mastery through a photo gallery profile.
 
 ### Technologies Used
-* simple project utilizing HTML/CSS and JavaScript event binders.
+* HTML/CSS
+* JavaScript 
 
 ### Link
 * https://geneggy.github.io/web_project_4/
