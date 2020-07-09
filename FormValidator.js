@@ -1,7 +1,4 @@
 export default class FormValidator {
-
-  //formElement needs to select the entire form in script.js, can use forEach function after creating array of them.
-
   constructor(settings, formElement) {
     this._formElement = formElement;
     this._inputSelector = settings.inputSelector;
@@ -24,7 +21,9 @@ export default class FormValidator {
   }
 
   _hideInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(
+      `#${inputElement.id}-error`
+    );
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
@@ -45,8 +44,9 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
-
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    const buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
     if (this._hasInvalidInput()) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.setAttribute('disabled', '');
@@ -60,10 +60,7 @@ export default class FormValidator {
     this._formElement.addEventListener('submit', (e) => {
       e.preventDefault();
     });
-
-    //toggle button state on load
     this._toggleButtonState();
-
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
