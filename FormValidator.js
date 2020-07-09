@@ -1,6 +1,9 @@
 export default class FormValidator {
-  constructor(settings, formSelector) {
-    this._formSelector = formSelector;
+
+  //formElement needs to select the entire form in script.js, can use forEach function after creating array of them.
+
+  constructor(settings, formElement) {
+    this._formElement = formElement;
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -12,7 +15,7 @@ export default class FormValidator {
   }
 
   _showInputError(inputElement, errorMessage) {
-    const errorElement = this._formSelector.querySelector(
+    const errorElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
     inputElement.classList.add(this._inputErrorClass);
@@ -21,7 +24,7 @@ export default class FormValidator {
   }
 
   _hideInputError(inputElement) {
-    const errorElement = this._formSelector.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
@@ -29,7 +32,7 @@ export default class FormValidator {
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(inputElement, inputElement.validationmessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
       this._hideInputError(inputElement);
     }
@@ -42,12 +45,14 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
+
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     if (this._hasInvalidInput()) {
-      this._submitButtonSelector.classList.add(this._inactiveButtonClass);
-      this._submitButtonSelector.setAttribute('disabled', '');
+      buttonElement.classList.add(this._inactiveButtonClass);
+      buttonElement.setAttribute('disabled', '');
     } else {
-      this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
-      this._submitButtonSelector.removeAttribute('disabled');
+      buttonElement.classList.remove(this._inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
     }
   }
 

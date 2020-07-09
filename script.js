@@ -1,5 +1,7 @@
 
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 
 /* eslint-disable strict */
 //interaction buttons
@@ -57,6 +59,8 @@ const initialPlaces = [
   },
 ];
 
+
+//load initial places
 initialPlaces.forEach((place) => {
   const newPlace = new Card(place, '#placeTemplate');
   placesContainer.prepend(newPlace.generateCard());
@@ -117,3 +121,20 @@ closeImgPopupButton.addEventListener('click', () => togglePopup(popupImgModal));
 //submitlisteners
 addForm.addEventListener('submit', submitAddForm);
 editForm.addEventListener('submit', formSubmitHandler);
+
+
+//form validation
+const formList = Array.from(document.querySelectorAll('.popup__form'));
+
+formList.forEach((formElement) => {
+  const validation = new FormValidator({
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+  }, formElement);
+
+  validation.enableValidation();
+});
+
