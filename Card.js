@@ -1,5 +1,8 @@
 import {togglePopup} from './utils.js';
 
+// Transforming the Card Class
+// Connect the Card class to the popup. Make Card take the handleCardClick() function into the constructor. When the user clicks on the card, this function will open the popup with an image.
+
 export default class Card {
   constructor(data, template) {
     this._name = data.name;
