@@ -11,41 +11,31 @@ class PopupWithForm extends Popup {
 
   constructor(popupSelector) {
     super(popupSelector);
+    this._getInputValue = this._getInputValue.bind(this);
+    
   }
 
   _getInputValue() {
-    //grab all values in form and store them in object
-    this._
+    if(this._popupElement.classList.contains('popup_edit')) {
+      this._name = this._popupElement.querySelector('.popup__form-name').value;
+      this._about = this._popupElement.querySelector('.popup__form-about').value;
+    } else if (this._popupElement.classList.contains('popup_new-place')) {
+      this._title = this._popupElement.querySelector('.popup__form-title').value;
+      this._link = this._popupElement.querySelector('.popup__form-link').value;
+    }
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupElement.querySelector('.popup__button').addEventListener('submit', )
+    this._popupElement.querySelector('.popup__button').addEventListener('submit', function() {
+      this._getInputValue();
+      this._close();
+    });
+  }
+
+  close() {
+    super.close();
+    this._popupElement.querySelector('.popup__form').reset();
   }
 }
 
-
-
-//add new image functions
-function submitAddForm(e) {
-  e.preventDefault();
-  const newPlace = new Card({ name: titleInput.value, link: linkInput.value }, '#placeTemplate');
-  placesContainer.prepend(newPlace.generateCard());
-  addForm.reset();
-  togglePopup(popupPlace);
-}
-
-//Edit profile functions
-function formSubmitHandler(e) {
-  e.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = aboutInput.value;
-  togglePopup(popupEdit);
-}
-
-editPopupButton.addEventListener('click', () => togglePopup(popupEdit));
-addPopupButton.addEventListener('click', () => togglePopup(popupPlace));
-
-//submitlisteners
-addForm.addEventListener('submit', submitAddForm);
-editForm.addEventListener('submit', formSubmitHandler);
