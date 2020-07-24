@@ -60,7 +60,6 @@ const initialPlaces = [
 ];
 
 
-const popupWithImage = new
 
 //load initial places
 

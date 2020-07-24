@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import { initialPlaces, addPopupButton, editPopupButton } from './constants.js';
+import { initialPlaces, addPopupButton, editPopupButton} from './constants.js';
 //
 import Section from './section.js';
 import PopupWithForm from './PopupWithForm.js';
@@ -13,6 +13,9 @@ const popupWithImage = new PopupWithImage('.popup_img');
 const handleCardClick = (card) => {
   popupWithImage.open(card);
 };
+
+//
+
 
 //load initial places
 const placeList = new Section(
@@ -37,7 +40,7 @@ const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
 
 //profile
 const userProfile = new userInfo('.profile__name', '.profile__subtitle');
-const handleEditSubmit = ({ name, title }) => {
+const handleEditSubmit = (name, title) => {
   userProfile.setUserInfo(name, title);
 };
 const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);

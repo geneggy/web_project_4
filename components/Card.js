@@ -3,12 +3,13 @@
 
 export default class Card {
   constructor(data, template, handleCardClick) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._template = template;
     this._handleCardClick = handleCardClick;
   }
-  
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._template)
@@ -43,10 +44,7 @@ export default class Card {
     this._element
       .querySelector('.place__image')
       .addEventListener('click', () => {
-        document.querySelector('.popup__image').src = this._link;
-        document.querySelector('.popup__image').alt = this._name;
-        document.querySelector('.popup__subtext').textContent = this._name;
-        this._handleCardClick(document.querySelector('.popup_img'));
+        this._handleCardClick(this._data);
       });
   }
 }
