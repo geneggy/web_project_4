@@ -40,8 +40,8 @@ const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
 
 //profile
 const userProfile = new userInfo('.profile__name', '.profile__subtitle');
-const handleEditSubmit = (name, title) => {
-  userProfile.setUserInfo(name, title);
+const handleEditSubmit = ({name, about}) => {
+  userProfile.setUserInfo(name, about);
 };
 const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);
 

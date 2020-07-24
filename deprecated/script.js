@@ -1,6 +1,6 @@
 import {togglePopup} from './utils.js';
 import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import FormValidator from './deprecated/FormValidator.js';
 
 
 /* eslint-disable strict */

@@ -31,7 +31,6 @@ export default class Popup {
     } 
   }
 
-  //need to change all individual popup exit to single ".popup__exit" done
   setEventListeners() {
     this._popupElement.querySelector('.popup__exit').addEventListener('click', this._close);
     document.addEventListener('keyup', this._handleEscClose);
