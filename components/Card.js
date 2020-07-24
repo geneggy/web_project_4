@@ -8,10 +8,12 @@ export default class Card {
     this._template = template;
     this._handleCardClick = handleCardClick;
   }
+  
   _getTemplate() {
     const cardElement = document
       .querySelector(this._template)
       .content.cloneNode(true);
+      
     return cardElement;
   }
 
@@ -44,7 +46,7 @@ export default class Card {
         document.querySelector('.popup__image').src = this._link;
         document.querySelector('.popup__image').alt = this._name;
         document.querySelector('.popup__subtext').textContent = this._name;
-        togglePopup(document.querySelector('.popup_img'));
+        this._handleCardClick(document.querySelector('.popup_img'));
       });
   }
 }

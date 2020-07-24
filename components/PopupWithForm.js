@@ -6,29 +6,28 @@
 // It modifies the close() parent method in order to reset the form once the popup is closed.
 // Create an instance of the PopupWithForm class for each popup.
 
+import Popup from './Popup.js';
 
-class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
 
-  constructor(popupSelector) {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._getInputValue = this._getInputValue.bind(this);
-    
+    this._handleFormSubmit = handleFormSubmit; 
   }
 
-  _getInputValue() {
-    if(this._popupElement.classList.contains('popup_edit')) {
-      this._name = this._popupElement.querySelector('.popup__form-name').value;
-      this._about = this._popupElement.querySelector('.popup__form-about').value;
-    } else if (this._popupElement.classList.contains('popup_new-place')) {
-      this._title = this._popupElement.querySelector('.popup__form-title').value;
-      this._link = this._popupElement.querySelector('.popup__form-link').value;
-    }
+  _getInputValues() {
+    this._inputList = this._popupElement.querySelectorAll('.popup__input');
+    this._inputValues = {};
+    this._inputList.forEach(input => {
+      this.inputValues[input.name] = input.value;
+    });
+    return this._formValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._popupElement.querySelector('.popup__button').addEventListener('submit', function() {
-      this._getInputValue();
+      this._handleFormSubmit(this._getInputValues());
       this._close();
     });
   }
