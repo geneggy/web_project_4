@@ -9,19 +9,26 @@ export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
+    this._close = () => {
+      this.close();
+    }
   }
 
   open() {
+    this.setEventListeners();
     this._popupElement.classList.add('popup_open');
     document.addEventListener('keyup', this._handleEscClose);
+    
   }
 
   close() {
+    console.log('close fires');
     this._popupElement.classList.remove('popup_open');
     document.removeEventListener('keyup', this._handleEscClose);
   }
 
   _handleEscClose(e) {
+    console.log('escape fires');
     if (e.key === 'Escape') {
       this.close();
     } 
@@ -29,7 +36,7 @@ export default class Popup {
 
   //need to change all individual popup exit to single ".popup__exit" done
   setEventListeners() {
-    this._popupElement.querySelector('.popup__exit').addEventListener('click', this.close);
+    this._popupElement.querySelector('.popup__exit').addEventListener('click', this._close);
     document.addEventListener('keyup', this._handleEscClose);
   }
 }

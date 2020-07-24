@@ -13,15 +13,7 @@ export default class PopupWithImage extends Popup {
     popupImgElement.src = link;
     popupImgElement.alt = caption;
     this._popupElement.querySelector('.popup__subtext').textContent = caption;
-
     super.open();
   }
 }
 
-// const modalWithImage = new PopupWithImage('......');
-
-// initialCards.forEach((data) => {
-//   new Card(data, '.', function() {
-//     modalWithImage.open();
-//   });
-// });
