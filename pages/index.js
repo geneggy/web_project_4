@@ -1,11 +1,10 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import { initialPlaces, addPopupButton, editPopupButton} from './constants.js';
-//
-import Section from './section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import userInfo from './UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import { initialPlaces, addPopupButton, editPopupButton} from '../utils/constants.js';
+import Section from '../components/section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import userInfo from '../components/UserInfo.js';
 
 //popupwithimage
 const popupWithImage = new PopupWithImage('.popup_img');
@@ -13,8 +12,6 @@ const popupWithImage = new PopupWithImage('.popup_img');
 const handleCardClick = (card) => {
   popupWithImage.open(card);
 };
-
-//
 
 
 //load initial places
