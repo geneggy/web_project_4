@@ -64,14 +64,62 @@ const initialPlaces = [
 ];
 
 
-//load initial places
-initialPlaces.forEach((place) => {
-  const newPlace = new Card(place, '#placeTemplate');
-  placesContainer.prepend(newPlace.generateCard());
+// //load initial places
+// initialPlaces.forEach((place) => {
+//   const newPlace = new Card(place, '#placeTemplate');
+//   placesContainer.prepend(newPlace.generateCard());
+// });
+
+//new
+const placeList = new Section({
+  items: initialPlaces, 
+  renderer: ({name, link}) => {
+      const place = new Card(name, link, '#placeTemplate', handleCardClick);
+      placeList.addItem(place.getCard());
+    }
+  }, '.places');
+
+placeList.renderItems();  
+/////////
+
+const handleAddPlaceSubmit = ({ name, link }) => {
+  const place = new Card(name, link, "#placeTemplate", handleCardClick);
+  placeList.addItem(place.getCard());
+}
+
+const newPlaceForm = new PopupWithForm(".new-place-form", handleNewPlaceSubmit);
+addButton.addEventListener("click", () => {
+  newPlaceForm.open();
 });
 
+const profile = new UserInfo(".profile__name", ".profile__title");
 
+const handleEditProfileSubmit = ({ name, title }) => {
+  profile.setUserInfo(name, title);
+}
 
+const editProfileForm = new PopupWithForm(".edit-profile-form", handleEditProfileSubmit);
+editButton.addEventListener("click", () => {
+  const user = profile.getUserInfo();
+  profileNameField.value = user.name;
+  profileTitleField.value = user.title;
+  editProfileForm.open();
+});
+
+const formList = [...document.querySelectorAll(".form")];
+const forms = formList.filter((f) => !f.classList.contains("form_display_pic"));
+forms.forEach((form) => {
+  const validator = new FormValidator({
+    submitButtonSelector: ".form__save-button",
+    inputSelector: ".form__input",
+    inputErrorClass: "form__input_type_error-indicator",
+    errorClass: "form__input-error-msg",
+    inactiveButtonClass: "form__save-button_disabled"
+    }, form);
+  validator.enableValidation();
+});
+
+/////////
 //add new image functions
 function submitAddForm(e) {
   e.preventDefault();

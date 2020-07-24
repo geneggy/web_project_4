@@ -60,7 +60,10 @@ const initialPlaces = [
 ];
 
 
+const popupWithImage = new
+
 //load initial places
+
 initialPlaces.forEach((place) => {
   const newPlace = new Card(place, '#placeTemplate');
   placesContainer.prepend(newPlace.generateCard());
