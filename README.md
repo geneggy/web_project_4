@@ -1,4 +1,4 @@
-# Project 4-7: Around The U.S.
+# Project 4-8: Around The U.S.
 
 ### Overview
 * Around the US is currently a project used to demonstrate knoowledge of HTML/CSS and javascript mastery through a photo gallery profile.
@@ -8,5 +8,5 @@
 * JavaScript 
 
 ### Link
-* https://geneggy.github.io/web_project_4/
+* https://geneggy.github.io/web_project_4/dist/index.html
 
