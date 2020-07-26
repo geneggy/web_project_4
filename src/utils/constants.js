@@ -28,5 +28,7 @@ export const initialPlaces = [
 //interaction buttons
 export const editPopupButton = document.querySelector('.profile__edit-button');
 export const addPopupButton = document.querySelector('.profile__add-button');
+export const nameInput = document.querySelector('.popup__form-name');
+export const aboutInput = document.querySelector('.popup__form-about');
 
 
