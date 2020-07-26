@@ -1,13 +1,12 @@
-// Transforming the Card Class
-// Connect the Card class to the popup. Make Card take the handleCardClick() function into the constructor. When the user clicks on the card, this function will open the popup with an image.
-
 export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
-    this._cardElement = document.querySelector(templateSelector).content.cloneNode(true);
+    this._cardElement = document
+      .querySelector(templateSelector)
+      .content.cloneNode(true);
   }
 
   generateCard() {
