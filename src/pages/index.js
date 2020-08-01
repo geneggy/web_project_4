@@ -32,7 +32,6 @@ api.getCardList()
     );
     placeList.renderItems();
     //addplace
-
     const handleAddPlaceSubmit = (data) => {
       console.log(data);
       api.addCard(data);
@@ -40,26 +39,41 @@ api.getCardList()
       placeList.addItem(place.generateCard());
       
     };
-
     const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
-
     addPopupButton.addEventListener('click', () => {
       addPlaceForm.open();
-    });
-    
-
+    });  
   }
   );
 
 
+  //profile
+const userProfile = new userInfo('.profile__name', '.profile__subtitle');
 
-
-
-
+//initial user info on load
 api.getUserInfo()
   .then(res => {
     userProfile.setUserInfo({name: res.name, about: res.about});
+    
+
+ 
   });
+
+     // on this part!!!!!!!!
+     const handleEditSubmit = (data) => {
+      userProfile.setUserInfo({name: data.name, about: data.about});
+    };
+
+    const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);
+
+    editPopupButton.addEventListener('click', () => {
+      const userInfo = userProfile.getUserInfo();
+      nameInput.value = userInfo.name;
+      aboutInput.value = userInfo.job;
+      editPopupForm.open();
+    });
+
+
   
 //popupwithimage
 const popupWithImage = new PopupWithImage('.popup_img');
@@ -68,38 +82,15 @@ const handleCardClick = (card) => {
   popupWithImage.open(card);
 };
 
-// //load initial places
-// const placeList = new Section(
-//   {
-//     items: initialPlaces,
-//     renderer: (data) => {
-//       const place = new Card(data, '#placeTemplate', handleCardClick);
-//       placeList.addItem(place.generateCard());
-//     },
-//   },
-//   '.places'
-// );
-// placeList.renderItems();
 
 
 
 
-//profile
-const userProfile = new userInfo('.profile__name', '.profile__subtitle');
 
-const handleEditSubmit = ({name, about}) => {
-  userProfile.setUserInfo(name, about);
-};
-const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);
 
 //open forms
 
-editPopupButton.addEventListener('click', () => {
-  const userInfo = userProfile.getUserInfo();
-  nameInput.value = userInfo.name;
-  aboutInput.value = userInfo.job;
-  editPopupForm.open();
-});
+
 
 //form validation
 const formList = Array.from(document.querySelectorAll('.popup__form'));
