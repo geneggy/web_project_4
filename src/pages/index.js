@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import { initialPlaces, addPopupButton, editPopupButton, nameInput, aboutInput} from '../utils/constants.js';
+import { addPopupButton, editPopupButton, nameInput, aboutInput} from '../utils/constants.js';
 import Section from '../components/section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -30,10 +31,36 @@ api.getCardList()
       '.places'
     );
     placeList.renderItems();
+    //addplace
+
+    const handleAddPlaceSubmit = (data) => {
+      console.log(data);
+      api.addCard(data);
+      const place = new Card(data, '#placeTemplate', handleCardClick);
+      placeList.addItem(place.generateCard());
+      
+    };
+
+    const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
+
+    addPopupButton.addEventListener('click', () => {
+      addPlaceForm.open();
+    });
+    
+
+  }
+  );
+
+
+
+
+
+
+api.getUserInfo()
+  .then(res => {
+    userProfile.setUserInfo({name: res.name, about: res.about});
   });
-
-
-
+  
 //popupwithimage
 const popupWithImage = new PopupWithImage('.popup_img');
 //handle image popup open
@@ -54,25 +81,18 @@ const handleCardClick = (card) => {
 // );
 // placeList.renderItems();
 
-//addplace
-const handleAddPlaceSubmit = (data) => {
-  const place = new Card(data, '#placeTemplate', handleCardClick);
-  placeList.addItem(place.generateCard());
-};
 
-const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
+
 
 //profile
 const userProfile = new userInfo('.profile__name', '.profile__subtitle');
+
 const handleEditSubmit = ({name, about}) => {
   userProfile.setUserInfo(name, about);
 };
 const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);
 
 //open forms
-addPopupButton.addEventListener('click', () => {
-  addPlaceForm.open();
-});
 
 editPopupButton.addEventListener('click', () => {
   const userInfo = userProfile.getUserInfo();

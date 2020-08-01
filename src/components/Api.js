@@ -28,7 +28,7 @@ export default class Api {
   // get user info
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this.headers
+      headers: this._headers
     })
       .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
       .catch(err => console.log(err));
@@ -37,7 +37,15 @@ export default class Api {
   getAppInfo() {}
 
   //POST https://around.nomoreparties.co/v1/groupId/cards
-  addCard({ name, link}) {}
+  addCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
+  }
 
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/5d1f0611d321eb4bdcd707dd
