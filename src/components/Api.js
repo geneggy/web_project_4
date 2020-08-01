@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 
 
@@ -6,13 +7,7 @@
 //https://around.nomoreparties.co/v1/group-3
 //token goes inside headers
 
-// const api = new Api({
-//   baseUrl: "https://around.nomoreparties.co/v1/group-3",
-//   headers: {
-//     authorization: "84e6855b-5fd3-47bd-8833-73dfffbf3da7",
-//     "Content-Type": "application/json"
-//   }
-// });
+
 
 export default class Api {
   constructor({baseUrl, headers}) {
@@ -21,32 +16,22 @@ export default class Api {
   }
 
 
-  //https://around.nomoreparties.co/v1/groupId/card
+  //https://around.nomoreparties.co/v1/groupId/cards
   getCardList() {
-    return fetch(`${this.baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      });
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
   }
 
   // get user info
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this.headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      });
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
   }
 
   getAppInfo() {}
