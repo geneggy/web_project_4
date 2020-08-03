@@ -13,6 +13,8 @@ export default class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._removeCard = this.removeCard.bind(this);
+
   }
 
 
@@ -60,7 +62,14 @@ export default class Api {
 
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/5d1f0611d321eb4bdcd707dd
-  removeCard(cardId) {}
+  removeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE",
+  })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
+  }
 
   //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId

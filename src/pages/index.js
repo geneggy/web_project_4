@@ -24,7 +24,7 @@ api.getCardList()
       {
         items: res,
         renderer: (data) => {
-          const place = new Card(data, '#placeTemplate', handleCardClick);
+          const place = new Card(data, '#placeTemplate', handleCardClick, api._removeCard);
           placeList.addItem(place.generateCard());
         },
       },
@@ -33,9 +33,12 @@ api.getCardList()
     placeList.renderItems();
     //addplace
     const handleAddPlaceSubmit = (data) => {
-      api.addCard(data);
-      const place = new Card(data, '#placeTemplate', handleCardClick);
-      placeList.addItem(place.generateCard());
+      api.addCard(data).then(res => {
+        const place = new Card(res, '#placeTemplate', handleCardClick, api._removeCard);
+        placeList.addItem(place.generateCard());
+      })
+      
+      
       
     };
 
