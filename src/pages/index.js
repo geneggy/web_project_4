@@ -9,6 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import userInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import './index.css';
+import Popup from '../components/Popup.js';
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-3',
@@ -18,13 +19,21 @@ const api = new Api({
   }
 });
 
+
+//popupwithimage
+const popupWithImage = new PopupWithImage('.popup_img');
+//handle image popup open
+const handleCardClick = (card) => {
+  popupWithImage.open(card);
+};
+
 api.getCardList()
   .then(res => {
     const placeList = new Section(
       {
         items: res,
         renderer: (data) => {
-          const place = new Card(data, '#placeTemplate', handleCardClick, api._removeCard);
+          const place = new Card(data, '#placeTemplate', handleCardClick, api._removeCard, handleTrashClick);
           placeList.addItem(place.generateCard());
         },
       },
@@ -34,7 +43,7 @@ api.getCardList()
     //addplace
     const handleAddPlaceSubmit = (data) => {
       api.addCard(data).then(res => {
-        const place = new Card(res, '#placeTemplate', handleCardClick, api._removeCard);
+        const place = new Card(res, '#placeTemplate', handleCardClick, api._removeCard, handleTrashClick);
         placeList.addItem(place.generateCard());
       })
       
@@ -76,18 +85,18 @@ editPopupButton.addEventListener('click', () => {
 
 
   
-//popupwithimage
-const popupWithImage = new PopupWithImage('.popup_img');
-//handle image popup open
-const handleCardClick = (card) => {
-  popupWithImage.open(card);
-};
+//popup delete
+const popupDelete = new Popup('.popup_delete', handleDeleteSubmit)
+const handleTrashClick = popupDelete.open();
 
+function deleteCardSubmit(card) {
+  api.deleteCard({_id: card._id});
+    //card._deleteCard?
+    popupDelete.close();
+  }
 
-
-
-
-
+//fires Off on click of trashcan
+//on submit, fire off this._deleteCard in selected Card, which should be passed to handleDeleteSubmit
 
 //open forms
 

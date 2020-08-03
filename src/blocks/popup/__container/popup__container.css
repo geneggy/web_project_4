@@ -4,6 +4,7 @@
   padding: 36px 36px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: white;
   max-width: 430px;
   height: 330px;
