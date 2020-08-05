@@ -13,7 +13,7 @@
 
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleTrashClick) {
+  constructor(data, templateSelector, handleCardClick, handleTrashClick) {
     this._data = data;
     this._likes = data.likes;
     this._id = data._id;
@@ -21,13 +21,15 @@ export default class Card {
     this._link = data.link;
     this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
-    this._handleDeleteClick = handleDeleteClick;
+  
     this._handleTrashClick = handleTrashClick;
     this._cardElement = document
       .querySelector(templateSelector)
       .content.cloneNode(true);
-  }
 
+
+  }
+  
   generateCard() {
     this._setEventListeners();
     const placeImage = this._cardElement.querySelector('.place__image');
@@ -35,6 +37,10 @@ export default class Card {
     placeImage.alt = this._name;
     this._cardElement.querySelector('.place__title').textContent = this._name;
     return this._cardElement;
+  }
+
+  _removeCard() {
+    this._cardElement.remove();
   }
 
   _setEventListeners() {
@@ -47,8 +53,7 @@ export default class Card {
     this._cardElement
       .querySelector('.place__trash-button')
       .addEventListener('click', (e) => {
-        this._handleDeleteClick(this._id);
-        e.target.parentElement.remove();
+        this._handleTrashClick(this)
       });
 
     this._cardElement

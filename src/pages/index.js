@@ -10,6 +10,7 @@ import userInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import './index.css';
 import Popup from '../components/Popup.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-3',
@@ -19,6 +20,20 @@ const api = new Api({
   }
 });
 
+
+//popup delete
+
+// pass into card, popupDelete.open, which will be passed this._id, and this._deleteCard
+const handleDeleteSubmit = (card) => {
+  console.log(card._removeCard);
+  api.removeCard(card._id);
+  card._removeCard();
+  popupDelete.close();
+  };
+
+const popupDelete = new PopupWithConfirm('.popup_delete', handleDeleteSubmit)
+
+const handleTrashClick = (card) => popupDelete.open(card);
 
 //popupwithimage
 const popupWithImage = new PopupWithImage('.popup_img');
@@ -33,7 +48,7 @@ api.getCardList()
       {
         items: res,
         renderer: (data) => {
-          const place = new Card(data, '#placeTemplate', handleCardClick, api._removeCard, handleTrashClick);
+          const place = new Card(data, '#placeTemplate', handleCardClick, handleTrashClick);
           placeList.addItem(place.generateCard());
         },
       },
@@ -43,14 +58,10 @@ api.getCardList()
     //addplace
     const handleAddPlaceSubmit = (data) => {
       api.addCard(data).then(res => {
-        const place = new Card(res, '#placeTemplate', handleCardClick, api._removeCard, handleTrashClick);
+        const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick);
         placeList.addItem(place.generateCard());
       })
-      
-      
-      
     };
-
     const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
     addPopupButton.addEventListener('click', () => {
       addPlaceForm.open();
@@ -68,7 +79,6 @@ api.getUserInfo()
     userProfile.setUserInfo({name: res.name, about: res.about});
   });
 
-// on this part!!!!!!!!
 const handleEditSubmit = (data) => {
   userProfile.setUserInfo({name: data.name, about: data.about});
   api.setUserInfo({name: data.name, about: data.about});
@@ -84,21 +94,6 @@ editPopupButton.addEventListener('click', () => {
 });
 
 
-  
-//popup delete
-const popupDelete = new Popup('.popup_delete', handleDeleteSubmit)
-const handleTrashClick = popupDelete.open();
-
-function deleteCardSubmit(card) {
-  api.deleteCard({_id: card._id});
-    //card._deleteCard?
-    popupDelete.close();
-  }
-
-//fires Off on click of trashcan
-//on submit, fire off this._deleteCard in selected Card, which should be passed to handleDeleteSubmit
-
-//open forms
 
 
 
