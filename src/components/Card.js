@@ -13,7 +13,7 @@
 
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleTrashClick) {
+  constructor(data, templateSelector, handleCardClick, handleTrashClick, userId) {
     this._data = data;
     this._likes = data.likes;
     this._id = data._id;
@@ -21,13 +21,11 @@ export default class Card {
     this._link = data.link;
     this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
-  
     this._handleTrashClick = handleTrashClick;
+    this._userId = userId;
     this._cardElement = document
       .querySelector(templateSelector)
       .content.cloneNode(true);
-
-
   }
   
   generateCard() {
@@ -36,12 +34,14 @@ export default class Card {
     placeImage.src = this._link;
     placeImage.alt = this._name;
     this._cardElement.querySelector('.place__title').textContent = this._name;
+    if (this._ownerId === this._userId) {
+      this._cardElement
+      .querySelector('.place__trash-button').classList.remove('place__trash-button_hidden');
+    }
+
     return this._cardElement;
   }
 
-  _removeCard() {
-    this._cardElement.remove();
-  }
 
   _setEventListeners() {
     this._cardElement
@@ -53,7 +53,8 @@ export default class Card {
     this._cardElement
       .querySelector('.place__trash-button')
       .addEventListener('click', (e) => {
-        this._handleTrashClick(this)
+        const trashTarget = e.target.parentElement;
+        this._handleTrashClick(this, trashTarget);
       });
 
     this._cardElement

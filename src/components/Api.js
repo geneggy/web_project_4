@@ -73,7 +73,14 @@ export default class Api {
 
   //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  changeLikeCardStatus(cardId, like) {}
+  changeLikeCardStatus(cardId, like) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: like ? 'PUT' : 'DELETE'
+  })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
+  }
   
 
 

@@ -24,22 +24,23 @@ const api = new Api({
 //popup delete
 
 // pass into card, popupDelete.open, which will be passed this._id, and this._deleteCard
-const handleDeleteSubmit = (card) => {
-  console.log(card._removeCard);
+const handleDeleteSubmit = (card, trashParentElement) => {
+ 
   api.removeCard(card._id);
-  card._removeCard();
+  console.log(trashParentElement);
+  trashParentElement.remove();
   popupDelete.close();
   };
 
 const popupDelete = new PopupWithConfirm('.popup_delete', handleDeleteSubmit)
 
-const handleTrashClick = (card) => popupDelete.open(card);
+const handleTrashClick = (card, trashParent) => popupDelete.open(card, trashParent);
 
 //popupwithimage
 const popupWithImage = new PopupWithImage('.popup_img');
 //handle image popup open
-const handleCardClick = (card) => {
-  popupWithImage.open(card);
+const handleCardClick = (card, trashParentElement) => {
+  popupWithImage.open(card, trashParentElement);
 };
 
 api.getCardList()
@@ -48,20 +49,30 @@ api.getCardList()
       {
         items: res,
         renderer: (data) => {
-          const place = new Card(data, '#placeTemplate', handleCardClick, handleTrashClick);
+          const place = new Card(data, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
           placeList.addItem(place.generateCard());
         },
       },
       '.places'
     );
     placeList.renderItems();
+
     //addplace
+    // const handleAddPlaceSubmit = (data) => {
+    //   api.addCard(data).then(res => {
+    //     const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
+    //     placeList.addItem(place.generateCard());
+    //   })
+    // };
+
     const handleAddPlaceSubmit = (data) => {
       api.addCard(data).then(res => {
-        const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick);
+        const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
         placeList.addItem(place.generateCard());
       })
     };
+
+
     const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
     addPopupButton.addEventListener('click', () => {
       addPlaceForm.open();
@@ -76,7 +87,7 @@ const userProfile = new userInfo('.profile__name', '.profile__subtitle');
 //initial user info on load
 api.getUserInfo()
   .then(res => {
-    userProfile.setUserInfo({name: res.name, about: res.about});
+    userProfile.setUserInfo({name: res.name, about: res.about, userId: res._id});
   });
 
 const handleEditSubmit = (data) => {

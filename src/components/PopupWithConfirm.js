@@ -8,8 +8,9 @@ export default class PopupWithConfirm extends Popup {
     this._buttonElement = this._popupElement.querySelector('.popup__button');
   }
 
-  open(card) {
+  open(card, trashParent) {
     this._card = card;
+    this._trashParent = trashParent;
     super.open();
   }
 
@@ -17,7 +18,7 @@ export default class PopupWithConfirm extends Popup {
     super.setEventListeners();
     this._submitHandler = (e) => {
       e.preventDefault();
-      this._handleConfirmSubmit(this._card);
+      this._handleConfirmSubmit(this._card, this._trashParent);
       this.close();
     };
 

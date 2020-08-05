@@ -4,6 +4,7 @@
 @import url("./__like-button/place__like-button.css");
 @import url("./__like-button/_liked/place__like-button_liked.css");
 @import url("./__trash-button/place__trash-button.css");
+@import url("./__trash-button/_hidden/place__trash-button_hidden.css");
 
 .place {
   display: flex;
