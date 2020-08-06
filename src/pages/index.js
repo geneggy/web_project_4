@@ -20,20 +20,14 @@ const api = new Api({
   }
 });
 
-
 //popup delete
-
-// pass into card, popupDelete.open, which will be passed this._id, and this._deleteCard
 const handleDeleteSubmit = (card, trashParentElement) => {
- 
   api.removeCard(card._id);
-  console.log(trashParentElement);
   trashParentElement.remove();
   popupDelete.close();
   };
-
-const popupDelete = new PopupWithConfirm('.popup_delete', handleDeleteSubmit)
-
+  
+const popupDelete = new PopupWithConfirm('.popup_delete', handleDeleteSubmit);
 const handleTrashClick = (card, trashParent) => popupDelete.open(card, trashParent);
 
 //popupwithimage
@@ -43,13 +37,17 @@ const handleCardClick = (card, trashParentElement) => {
   popupWithImage.open(card, trashParentElement);
 };
 
+const handleLikeClick = (userId, cardIsLiked) => {
+  api.changeLikeCardStatus(userId, cardIsLiked);
+}
+
 api.getCardList()
   .then(res => {
     const placeList = new Section(
       {
         items: res,
         renderer: (data) => {
-          const place = new Card(data, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
+          const place = new Card(data, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId, handleLikeClick);
           placeList.addItem(place.generateCard());
         },
       },
@@ -57,21 +55,12 @@ api.getCardList()
     );
     placeList.renderItems();
 
-    //addplace
-    // const handleAddPlaceSubmit = (data) => {
-    //   api.addCard(data).then(res => {
-    //     const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
-    //     placeList.addItem(place.generateCard());
-    //   })
-    // };
-
     const handleAddPlaceSubmit = (data) => {
       api.addCard(data).then(res => {
-        const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId);
+        const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId, handleLikeClick);
         placeList.addItem(place.generateCard());
       })
     };
-
 
     const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
     addPopupButton.addEventListener('click', () => {

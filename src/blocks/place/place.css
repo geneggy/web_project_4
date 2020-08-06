@@ -5,7 +5,7 @@
 @import url("./__like-button/_liked/place__like-button_liked.css");
 @import url("./__trash-button/place__trash-button.css");
 @import url("./__trash-button/_hidden/place__trash-button_hidden.css");
-
+@import url("./__likes/place__likes.css");
 .place {
   display: flex;
   flex-direction: column;
