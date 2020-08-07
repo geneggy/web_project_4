@@ -3,23 +3,8 @@
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
-  transition: .3s;
+  transition: .5s;
 }
 
 
-/* .profile__avatar-edit {
-  position: absolute;
-  top: 0;
-    right: 0;
-    width: 26px;
-    height: 26px;
-    padding: 47px;
-    background: rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    transition: .3s;
-}
-
-.profile__avatar-edit:hover {
-  opacity: 1;
-} */
 

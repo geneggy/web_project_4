@@ -20,11 +20,21 @@ const api = new Api({
   }
 });
 
+//change loading text
+const renderLoading = (isLoading, buttonSelector,buttonText) => {
+  if(isLoading) {
+    document.querySelector(buttonSelector).textContent = 'Saving...';
+  } else {
+    document.querySelector(buttonSelector).textContent = `${buttonText}`
+  }
+}
+
 //popup delete
 const handleDeleteSubmit = (card, trashParentElement) => {
-  api.removeCard(card._id);
+  renderLoading(true, '.popup__button-delete', 'Save');
   trashParentElement.remove();
   popupDelete.close();
+  api.removeCard(card._id).finally((res) => {renderLoading(false, '.popup__button-delete', 'Save');}) 
   };
   
 const popupDelete = new PopupWithConfirm('.popup_delete', handleDeleteSubmit);
@@ -44,11 +54,13 @@ const handleLikeClick = (userId, cardIsLiked) => {
 
 //popup set avatar
 const handleAvatarSubmit = (link) => {
-  api.setUserAvatar(link)
+  renderLoading(true, '.popup__button-avatar', 'Save');
+  api.setUserAvatar(link).finally((res) => {
+    renderLoading(false, '.popup__button-avatar', 'Save');
+  })
   userProfile.setAvatar(link.avatar);
 };
 const popupSetAvatar = new PopupWithForm('.popup_avatar', handleAvatarSubmit);
-
 document.querySelector('.profile__avatar-edit').addEventListener('click', () => {popupSetAvatar.open()});
 
 
@@ -68,10 +80,11 @@ api.getCardList()
     placeList.renderItems();
 
     const handleAddPlaceSubmit = (data) => {
+      renderLoading(true, '.popup__button-image', 'Save');
       api.addCard(data).then(res => {
         const place = new Card(res, '#placeTemplate', handleCardClick, handleTrashClick, userProfile._userId, handleLikeClick);
         placeList.addItem(place.generateCard());
-      })
+      }).finally((res) => {renderLoading(false, '.popup__button-image', 'Save');})
     };
 
     const addPlaceForm = new PopupWithForm('.popup_new-place',handleAddPlaceSubmit);
@@ -84,7 +97,6 @@ api.getCardList()
 
 //profile
 const userProfile = new userInfo('.profile__name', '.profile__subtitle', '.profile__avatar');
-
 //initial user info on load
 api.getUserInfo()
   .then(res => {
@@ -93,10 +105,12 @@ api.getUserInfo()
   });
 
 const handleEditSubmit = (data) => {
+  renderLoading(true, '.popup__button-edit', 'Save');
   userProfile.setUserInfo({name: data.name, about: data.about});
-  api.setUserInfo({name: data.name, about: data.about});
+  api.setUserInfo({name: data.name, about: data.about}).finally((res) => {renderLoading(false, '.popup__button-edit', 'Save');});
 };
 
+//edit profile popup
 const editPopupForm = new PopupWithForm('.popup_edit', handleEditSubmit);
 
 editPopupButton.addEventListener('click', () => {
