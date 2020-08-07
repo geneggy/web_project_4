@@ -1,11 +1,11 @@
-import Popup from './Popup.js';
+import Popup from "./Popup.js";
 
 export default class PopupWithConfirm extends Popup {
   constructor(popupSelector, handleConfirmSubmit) {
     super(popupSelector);
     this._handleConfirmSubmit = handleConfirmSubmit;
     this._popupElement = document.querySelector(popupSelector);
-    this._buttonElement = this._popupElement.querySelector('.popup__button');
+    this._buttonElement = this._popupElement.querySelector(".popup__button");
   }
 
   open(card, trashParent) {
@@ -22,11 +22,11 @@ export default class PopupWithConfirm extends Popup {
       this.close();
     };
 
-    this._buttonElement.addEventListener('click', this._submitHandler);
+    this._buttonElement.addEventListener("click", this._submitHandler);
   }
 
   close() {
-    this._buttonElement.removeEventListener('click', this._submitHandler);
+    this._buttonElement.removeEventListener("click", this._submitHandler);
     super.close();
   }
 }
