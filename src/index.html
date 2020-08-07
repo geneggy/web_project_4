@@ -18,8 +18,11 @@
       <main>
         <!-- profile section -->
         <section class="profile">
-          <img src="images/Avatar.png" class="profile__avatar" alt="avatar" />
-
+          <div class = "profile__avatar-container">
+            <img src="images/Avatar.png" class="profile__avatar" alt="avatar" />
+            <img src="images/pen.svg" alt="button" class="profile__avatar-edit" />
+          </div>
+          
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button class="profile__edit-button" aria-label="open profile edit window"></button>
@@ -134,6 +137,27 @@
       </div>
     </div>    
     
+<!--         Popup_avatar        -->
+    <div class="popup popup_avatar">
+      <div class="popup__container popup__container_avatar">
+        <button class="popup__exit popup__exit_avatar" aria-label="close"></button>
+        <h2 class="popup__title">Edit Profile Picture</h2>
+
+        <form class="popup__form popup__form_avatar" novalidate>
+          <input
+            type="url"
+            class="popup__form-link popup__input"
+            id="link-input"
+            placeholder="Image link"
+            name="avatar"
+            value=""
+            required
+          />
+          <span class="popup__error" id="link-input-error">Test</span>
+          <button class="popup__button" aria-label="save" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
 <!------ card Template --------->
     <template id="placeTemplate">
       <div class="place">

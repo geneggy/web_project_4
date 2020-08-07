@@ -85,6 +85,13 @@ export default class Api {
 
 
   //PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-  setUserAvatar({avatar}) {}
-
+  setUserAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+      method: 'PATCH',
+      body: JSON.stringify(link)
+  })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch(err => console.log(err));
+  }
 }

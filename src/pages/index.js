@@ -37,9 +37,21 @@ const handleCardClick = (card, trashParentElement) => {
   popupWithImage.open(card, trashParentElement);
 };
 
+//handleLikeClick
 const handleLikeClick = (userId, cardIsLiked) => {
   api.changeLikeCardStatus(userId, cardIsLiked);
 }
+
+//popup set avatar
+const handleAvatarSubmit = (link) => {
+  api.setUserAvatar(link)
+  userProfile.setAvatar(link.avatar);
+};
+const popupSetAvatar = new PopupWithForm('.popup_avatar', handleAvatarSubmit);
+
+document.querySelector('.profile__avatar-edit').addEventListener('click', () => {popupSetAvatar.open()});
+
+
 
 api.getCardList()
   .then(res => {
@@ -71,12 +83,13 @@ api.getCardList()
 
 
 //profile
-const userProfile = new userInfo('.profile__name', '.profile__subtitle');
+const userProfile = new userInfo('.profile__name', '.profile__subtitle', '.profile__avatar');
 
 //initial user info on load
 api.getUserInfo()
   .then(res => {
     userProfile.setUserInfo({name: res.name, about: res.about, userId: res._id});
+    userProfile.setAvatar(res.avatar);
   });
 
 const handleEditSubmit = (data) => {
@@ -92,9 +105,6 @@ editPopupButton.addEventListener('click', () => {
   aboutInput.value = userInfo.job;
   editPopupForm.open();
 });
-
-
-
 
 
 //form validation

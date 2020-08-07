@@ -70,23 +70,6 @@ export default class Card {
     this._isLiked = !this._isLiked;
   }
 
-  // _likeCard() {
-  //   if(this._likeButton.classList.contains('place__like-button_liked')) {
-  //     this._toggleIsLiked();
-  //     this._likeButton.classList.remove('place__like-button_liked');
-  //     this._likeCount = this._likeCount - 1;
-  //     this._likesElement.textContent = this._likeCount;
-  //     this._handleLikeClick(this._id, this._isLiked);
-
-  //   } else {
-  //     this._toggleIsLiked();
-  //     this._likeButton.classList.add('place__like-button_liked');
-  //     this._likeCount = this._likeCount + 1;
-  //     this._likesElement.textContent = this._likeCount;
-  //     this._handleLikeClick(this._id, this._isLiked);
-  //   }
-  // }
-
   _likeCard() {
     this._toggleIsLiked();
     if(this._likeButton.classList.contains('place__like-button_liked')) {
